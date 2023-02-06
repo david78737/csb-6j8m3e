@@ -2,7 +2,7 @@
 // item with art and artist and artist portfolio
 
 var Webflow = Webflow || [];
-// Webflow.push(function() {
+Webflow.push(function() {
 
 function checkBioImage(artist) {
   const artistBioImage = artist && artist.artistBioImage; // check for null values
@@ -205,4 +205,4 @@ async function getPortfolio() {
 }
 
 document.addEventListener("DOMContentLoaded", () => getPortfolio());
-//});
+});
