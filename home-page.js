@@ -93,7 +93,7 @@ function updateFav(e) {
 
 
 function sliderHome() {
-  var homeSlider = new Splide('#home-slider', {
+  var homeSlider = new Splide('#homeslider', {
     // Desktop on down
     perPage: 1,
     perMove: 1,
@@ -166,15 +166,15 @@ async function getFreeArtworks() {
       class: "likebutton false"
     });
 		
-    $(clone).find(".image-file-uuid").attr("src", item.file);
- console.log("image file = ", imageFile);
-    $(clone).find(".image-file-uuid").attr("alt", altText);
+    $(clone).find("img.slide-image.is--home").attr("src", item.file);
+//console.log("image file = ", imageFile);
+    $(clone).find("img.slide-image.is--home").attr("alt", altText);
     $(clone).show();
-    // console.log("likedID = ",likedID)
+//console.log("item.file = ",item.file)
     $("#slideContainer").append(clone);
   }
   $("#sampleslide").remove();
   sliderHome();
 }
 getFreeArtworks();
-});
+ });
