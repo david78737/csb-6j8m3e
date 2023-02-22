@@ -1,0 +1,141 @@
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .splide {
+    margin: 0 auto;
+  }
+
+  .splide__track {}
+
+  .thumbnails {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .thumbnail {
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    list-style: none;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+
+  .thumbnail.is-active {
+    opacity: 1;
+  }
+
+  .img-wrapper img {
+    width: auto;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .thumbnail img {
+    width: 100%;
+    height: auto;
+    margin: 10px;
+  }
+
+  .specifics {
+    position: static;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: auto;
+    display: flex;
+    width: 70%;
+    padding-right: 50px;
+    padding-left: 50px;
+    flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .specifics:medium {
+    position: static;
+  }
+
+  .specifics:tiny {
+    width: 260px;
+  }
+
+  .splide-art-data {
+    display: flex;
+    width: 100%;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    flex-direction: row;
+    justify-content: center;
+    background-color: transparent;
+  }
+
+  .splide-art-data:tiny {
+    width: 100%;
+  }
+
+  img.slide-image {
+    width: 100%;
+    height: auto;
+    border: 3px solid #555;
+  }
+
+  .title,
+  .description,
+  .price,
+  .price_framed {
+    display: block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-size: 1em;
+    line-height: 1.1;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+  }
+
+  .img-wrapper {
+    width: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .img-wrapper img {
+    object-fit: contain;
+  }
+
+  .prices {
+    display: flex;
+    width: 30em;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .price {
+    margin-right: 10px;
+  }
+
+  .slide-header {
+    display: block;
+    text-align: center;
+  }
