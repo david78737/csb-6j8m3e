@@ -1,4 +1,7 @@
-  function build_portfolio(artist_portfolio) {
+
+var Webflow = Webflow || [];
+Webflow.push(function () {
+function build_portfolio(artist_portfolio) {
     for (const item of artist_portfolio) {
       try {
         //console.log("*****item file = ", item.file)
@@ -153,5 +156,5 @@
     build_portfolio(artist_portfolio);
     // await buildArtistPortfolio(artist_portfolio);
   }
-  getPortfolio();
- 
+  getPortfolio(); 
+});
