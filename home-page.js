@@ -97,6 +97,7 @@ function sliderHome() {
     // Desktop on down
     perPage: 1,
     perMove: 1,
+    autoHeight: true,
     focus: 0, // 0 = left and 'center' = center
     type: "loop", // 'loop' or 'slide'
     gap: "40vw", // space between slides
