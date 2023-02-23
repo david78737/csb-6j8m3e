@@ -67,12 +67,15 @@ function updateFav(e) {
   if (e.target !== e.currentTarget) {
     // do not exicute if a nonspecific area clicked
     var clickedItem = e.target.id; // aid12345
+	  
+    console.log("clicked item = ",clickedItem);
+    // <a id="aid271" href="#" class="likebutton false"></a>	
+	  
     var artwork_id = clickedItem.substring(3); // aid12345 => 12345 or artwork record id
     // create variable for current value "liked" (true or false)
     var rawClass = $(e.target).attr("class"); // 'likebutton false' or 'likebutton true' plus stuff Webflow adds
     let start = rawClass.indexOf(" ");
     let liked = rawClass.slice(start + 1); // isolates false or true
-	  console.log("clicked item = ",clickedItem);
     // toggle liked button status changes on client page
     if (liked === "false") {
       liked = "true";
