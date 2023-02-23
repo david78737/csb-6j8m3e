@@ -80,8 +80,9 @@ function updateFav(e) {
       $("#" + clickedItem).prop("class", "liked-or-not false");
     }
     // POST data to Xano to update table record
+    var token = localStorage.getItem("token");
     const data = {
-      member_id: webflowMemberId,
+      authToken: token,
       artworks_id: artwork_id,
       art_favorite: liked
     };
