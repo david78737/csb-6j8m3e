@@ -1,0 +1,363 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.1/dist/css/themes/splide-skyblue.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.1/dist/js/splide.min.js"></script>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .splide {
+    margin: 0 auto;
+  }
+
+  .splide__track {}
+
+  .thumbnails {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .thumbnail {
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    list-style: none;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+
+  .thumbnail.is-active {
+    opacity: 1;
+  }
+
+  .img-wrapper img {
+    width: auto;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .thumbnail img {
+    width: 100%;
+    height: auto;
+    margin: 10px;
+  }
+
+  .specifics {
+    position: static;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: auto;
+    display: flex;
+    width: 70%;
+    padding-right: 50px;
+    padding-left: 50px;
+    flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .specifics:medium {
+    position: static;
+  }
+
+  .specifics:tiny {
+    width: 260px;
+  }
+
+  .splide-art-data {
+    display: flex;
+    width: 100%;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    flex-direction: row;
+    justify-content: center;
+    background-color: transparent;
+  }
+
+  .splide-art-data:tiny {
+    width: 100%;
+  }
+
+  img.slide-image {
+    width: 100%;
+    height: auto;
+    border: 3px solid #555;
+  }
+
+  .title,
+  .description,
+  .price,
+  .price_framed {
+    display: block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-size: 1em;
+    line-height: 1.1;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+  }
+
+  .img-wrapper {
+    width: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .img-wrapper img {
+    object-fit: contain;
+  }
+
+  .prices {
+    display: flex;
+    width: 30em;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .price {
+    margin-right: 10px;
+  }
+
+  .slide-header {
+    display: block;
+    text-align: center;
+  }
+
+</style>
+<div>
+  <h1 class="script-label">
+    Build Artist Portfolio
+  </h1>
+	<h3 class="slide-header">Artist Portfolio</h3>
+</div>
+<section id="main-slider" class="splide" aria-label="My Awesome Gallery">
+  <div class="splide__track">
+    <ul id="splideList" class="splide__list">
+      <li class="splide__slide" id="sample-slide">
+        <div class="splide-art-data">
+          <div class="specifics">
+            <p class="title">title </p>
+            <p class="description">description </p>
+            <div class="prices">
+              <p class="price">price </p>
+              <a class="like" href="/item">LIKE</a>
+              <p class="price_framed">price_framed </p>
+            </div>
+          </div>
+        </div>
+        <div class="img-wrapper">
+          <img class="slide-image is--portfolio" src="https://source.unsplash.com/random/1000x1000?sig=1" alt="" />
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+<ul id="thumbnails" class="thumbnails">
+  <li class="thumbnail" id="samplethumb">
+    <img class="thumb-image is--portfolio" src="https://source.unsplash.com/random/1000x1000?sig=1" alt="" />
+  </li>
+</ul>
+
+<script>
+  function build_portfolio(artist_portfolio) {
+    for (const item of artist_portfolio) {
+      try {
+        //console.log("*****item file = ", item.file)
+        $("#sampleslide").show(); // show the template card
+        $("#samplethumb").show(); // show the template card
+        const template = $("#sample-slide");
+        const clone = $(template).clone();
+        const templateThumb = $("#samplethumb");
+        const clonethumb = $(templateThumb).clone();
+        //console.log("+++++++///item file = ", item.file)
+        $(clone).show();
+        $(clonethumb).show();
+        $(clone).find(".splide__slide").removeAttr('id');
+        $(clonethumb).find(".thumbnail").removeAttr('id');
+        const imageFile = item.file;
+        //console.log("*****item file = ", item.file)
+        // ***************
+        $(clone).find("img.slide-image.is--portfolio").attr("src", item.file);
+        $(clone).find(".title").text(item.title);
+        $(clone).find(".description").text(item.description);
+        $(clone).find(".price").text("Price unframed: " + "$" + item.price);
+        $(clone).find(".price_framed").text("Price framed: " + "$" + item.price_framed);
+        $(".splide__list").append(clone);
+        // ****************
+        $(clonethumb).find("img.thumb-image.is--portfolio").attr("src", item.file);
+        $(".thumbnails").append(clonethumb);
+        // ********************		
+      } catch (e) {
+
+        console.log("error!!!!!", e.message)
+      }
+
+    }
+    $("#sample-slide").remove();
+    $("#samplethumb").remove();
+
+    var splide = new Splide("#main-slider", {
+      width: 400,
+      height: "",
+      pagination: false,
+      cover: true,
+      arrows: false
+    });
+
+    var thumbnails = document.getElementsByClassName("thumbnail");
+    var current;
+
+    for (var i = 0; i < thumbnails.length; i++) {
+      initThumbnail(thumbnails[i], i);
+    }
+
+    function initThumbnail(thumbnail, index) {
+      thumbnail.addEventListener("click", function() {
+        splide.go(index);
+      });
+    }
+
+    splide.on("mounted move", function() {
+      var thumbnail = thumbnails[splide.index];
+
+      if (thumbnail) {
+        if (current) {
+          current.classList.remove("is-active");
+        }
+
+        thumbnail.classList.add("is-active");
+        current = thumbnail;
+      }
+    });
+
+    splide.mount();
+  }
+
+  // ITEM script
+  // item with art and artist and artist portfolio
+  // var Webflow = Webflow || [];
+  // Webflow.push(function() {
+  function checkBioImage(artist) {
+    // ********** create boolian checking if values exist		
+    const artistBioImage = artist && artist.artistBioImage;
+    // ********** use boolian to set value	
+    if (artistBioImage) {
+      $(".bio-pic-default").css("class", "bio-pic-default is--hidden");
+      $(".bio-pic").css("class", "bio-pic"); // display block
+      $(".bio-pic.is--artist").attr("src", artistBioImage);
+    } else {
+      $(".bio-pic-default").attr("class", "bio-pic-default"); // display VanGogh
+      $(".bio-pic").css("class", "bio-pic is--hidden");
+    }
+  }
+
+  function myImage(itemFile, altText) {
+    const img = $("<img />");
+    // console.log("itemFile = ", itemFile )
+    $(img).attr("alt", altText);
+    $(img).attr("data-blink-src", itemFile);
+    $(img).attr("width", "280");
+    $(img).attr("height", "");
+    //console.log("img = ", img )
+    return img;
+  }
+
+  function mainSlider() {
+    var portfolioSplide = new Splide("#main-slider", {
+      width: 600,
+      height: 700,
+      pagination: false,
+      cover: true,
+      breakpoints: {
+        991: {
+          // Tablet
+          perPage: 1,
+          gap: "2vw"
+        },
+        767: {
+          // Mobile Landscape
+          perPage: 1,
+          gap: "2vw"
+        },
+        479: {
+          // Mobile Portrait
+          perPage: 1,
+          gap: "2vw"
+        }
+      }
+    });
+    document.addEventListener("DOMContentLoaded", () => portfolioSplide.mount());
+  } // end home slider
+  //*****************
+  function artAndArtist(artwork, artist) {
+    checkBioImage(artist);
+    let artistBio = "The artist has not provided a biography";
+    artistBio = artist && artist.artistBio; // check for null values
+    artistBio = artistBio.substring(0, 300);
+    let edition_size = "The artist has not provided a edition size";
+    edition_size = artwork && artwork.edition_size; // check for null values
+    let description = "The artist has not provided a description";
+    description = artwork && artwork.description; // check for null values
+    description = description.substring(0, 300);
+
+    $(".artist-bio.is--artist").text(artistBio);
+    $(".edition_size").text(edition_size);
+    $(".description").text(description);
+    $(".art-file-uuid.is--artist").attr("src", artwork.file); //
+    $(".splide-title.is--artist").text(artwork.title); //
+    $(".splide-artist.is--artist").text(artwork.artistFullName); //
+    $(".dimensions.is--artist").text(artwork.dimensions); //
+    $(".bio-pic.is--artist").text(artwork.width); //
+    $(".artist-bio.is--artist").text(artwork.height); //
+  }
+  //*****************
+  async function getPortfolio() {
+    var artId = 264; // default value
+    var myUrl = new URL(document.location.href);
+    
+    if (myUrl.searchParams.get("artId")) {
+      artId = myUrl.searchParams.get("artId");
+    } 
+    const requestURL =
+      "https://xkwy-af3e-bx9m.n7.xano.io/api:arLEd2EP:v1/item_artwork?artId=" + artId;
+    const result = await fetch(requestURL); //
+    const obj = await result.json(); //
+
+    const artwork = obj.artwork;
+    const artist = obj.artist;
+    const artist_portfolio = obj.artist_portfolio;
+    const nonprofit = obj.nonprofit;
+    const nonprofit_portfolio = obj.nonprofit_portfolio;
+    const businesses_donating = obj.businesses_donating;
+    const supporting_artists = obj.supporting_artists;
+    console.log("artist_portfolio = ", artist_portfolio)
+    build_portfolio(artist_portfolio);
+    // await buildNonprofitSlides(nonprofit_portfolio);
+    // await buildArtistPortfolio(artist_portfolio);
+    // await makePortfolioSlider();
+    // await mainSlider();
+  }
+  getPortfolio();
+  //});
+
+</script>
