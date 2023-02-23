@@ -71,6 +71,7 @@ function updateFav(e) {
     var rawClass = $(e.target).attr("class"); // 'likebutton false' or 'likebutton true' plus stuff Webflow adds
     let start = rawClass.indexOf(" ");
     let liked = rawClass.slice(start + 1); // isolates false or true
+	  console.log("clicked item = ",clickedItem);
     // toggle liked button status changes on client page
     if (liked === "false") {
       liked = "true";
