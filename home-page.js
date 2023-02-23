@@ -49,7 +49,8 @@ function postData(xanoAPI, data) {
         data: data
       }), // per Ray Deck
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
+        "Content-type": "application/json; charset=UTF-8",
+	Authorization: "Bearer " + data.token      
       }
     })
     .then((response) => response.json())
