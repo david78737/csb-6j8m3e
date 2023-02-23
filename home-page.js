@@ -33,9 +33,9 @@ function myImage(itemFile, altText) {
 }
 
 // test for logged in
-const webflowMemberId = getCookie("webflowMemberId");
-if (webflowMemberId == null) {
-  // visitors must log in
+const token = localStorage.getItem("token");
+if (token == null) { // visitors must log in
+  alert("please log in");
   window.location.href = "https://www.helps-austin.com";
 }
 
@@ -59,7 +59,7 @@ function postData(xanoAPI, data) {
 }
 
 
-// this function captures the id of the clicked "like" button
+// this function captures the id of a clicked "like" button
 // it changes the class (appearance) of the button from gray hearto to red heart
 // it updates the favorites table in Xano recording
 // the user / member id, artwork id, and status of the button
@@ -68,8 +68,9 @@ function updateFav(e) {
     // do not exicute if a nonspecific area clicked
     var clickedItem = e.target.id; // aid12345
 	  
+    // <a id="aid271" href="#" class="likebutton false"></a>
+	  
     console.log("clicked item = ",clickedItem);
-    // <a id="aid271" href="#" class="likebutton false"></a>	
 	  
     var artwork_id = clickedItem.substring(3); // aid12345 => 12345 or artwork record id
     // create variable for current value "liked" (true or false)
