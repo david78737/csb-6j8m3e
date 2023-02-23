@@ -79,7 +79,7 @@ function mainSlider() {
     perPage: 1,
     perMove: 1,
     focus: "center", // 0 = left and 'center' = center
-    type: "loop", // 'loop' or 'slide'
+    type: "slide", // 'loop' or 'slide'
     gap: "50vw", // space between slides
     arrows: "slider", // 'slider' or false
     pagination: "slider", // 'slider' or false
