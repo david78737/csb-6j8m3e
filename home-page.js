@@ -1,12 +1,12 @@
 /*
 // JS fiddle
 // Home Splide / HTML / JS 
-// 2/9/2023 
+// 2/24/2023 
 */
 
 
 var Webflow = Webflow || [];
-Webflow.push(function () {
+// Webflow.push(function () {
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
@@ -33,9 +33,9 @@ function myImage(itemFile, altText) {
 }
 
 // test for logged in
-const token = localStorage.getItem("token");
-if (token == null) { // visitors must log in
-  alert("please log in");
+const webflowMemberId = getCookie("webflowMemberId");
+if (webflowMemberId == null) {
+  // visitors must log in
   window.location.href = "https://www.helps-austin.com";
 }
 
@@ -49,8 +49,7 @@ function postData(xanoAPI, data) {
         data: data
       }), // per Ray Deck
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
-	Authorization: "Bearer " + data.token      
+        "Content-type": "application/json; charset=UTF-8"
       }
     })
     .then((response) => response.json())
@@ -59,33 +58,33 @@ function postData(xanoAPI, data) {
 }
 
 
-// this function captures the id of a clicked "like" button
+// this function captures the id of the clicked "like" button
 // it changes the class (appearance) of the button from gray hearto to red heart
 // it updates the favorites table in Xano recording
 // the user / member id, artwork id, and status of the button
+// https://www.youtube.com/watch?v=Xwq1Hj1DyDM&t=2s
+var theParent = document.querySelector("#theDude");
+theParent.addEventListener("click", updateFav, false);
+
 function updateFav(e) {
   if (e.target !== e.currentTarget) {
     // do not exicute if a nonspecific area clicked
     var clickedItem = e.target.id; // aid12345
-	  
-    // <a id="aid271" href="#" class="likebutton false"></a>
-	  
-    console.log("clicked item = ",clickedItem);
-	  
     var artwork_id = clickedItem.substring(3); // aid12345 => 12345 or artwork record id
     // create variable for current value "liked" (true or false)
     var rawClass = $(e.target).attr("class"); // 'likebutton false' or 'likebutton true' plus stuff Webflow adds
     let start = rawClass.indexOf(" ");
     let liked = rawClass.slice(start + 1); // isolates false or true
-    // toggle liked button status changes on client page
+    // toggle liked button status changes on page
     if (liked === "false") {
       liked = "true";
-      $("#" + clickedItem).prop("class", "liked-or-not true");
+      $("#" + clickedItem).prop("class", "likebutton true");
     } else {
       liked = "false";
-      $("#" + clickedItem).prop("class", "liked-or-not false");
+      $("#" + clickedItem).prop("class", "likebutton false");
     }
     // POST data to Xano to update table record
+		
     var token = localStorage.getItem("token");
     const data = {
       authToken: token,
@@ -104,7 +103,6 @@ function sliderHome() {
     // Desktop on down
     perPage: 1,
     perMove: 1,
-    autoHeight: true,
     focus: 0, // 0 = left and 'center' = center
     type: "loop", // 'loop' or 'slide'
     gap: "40vw", // space between slides
@@ -185,4 +183,4 @@ async function getFreeArtworks() {
   sliderHome();
 }
 getFreeArtworks();
- });
+// });
