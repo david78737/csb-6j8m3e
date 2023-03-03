@@ -10,7 +10,7 @@ Webflow.push(function () {  // remove coment for production
     // console.log("itemFile = ", itemFile )
     $(img).attr("alt", altText);
     $(img).attr("data-blink-src", itemFile);
-    $(img).attr("width", "280");
+    $(img).attr("width", "320");  // 280 > 320 3/4
     $(img).attr("height", "");
     //console.log("img = ", img )
     return img;
@@ -173,11 +173,11 @@ Webflow.push(function () {  // remove coment for production
     $(".edition_size").text(edition_size);
     $(".description").text(description);
 		$(".sample-hero-image.is--artist img:last-child").remove()
-    $(".sample-hero-image.is--artist").append('<img src="' + artwork.file + 'alt="' + description  + '"/>');		
+    $(".sample-hero-image.is--artist").append('<img src="' + artwork.file + 'alt="' + description  + 'width="500"' + '"/>');		
     $(".splide-title.is--artist").text(artwork.title); 
     $(".splide-artist.is--artist").text('Artist: ' + artwork.artistFullName); 
     $(".dimensions.is--artist").text('Dimensions: ' + artwork.width + ' x ' + artwork.height ); 
-		$(".artist-bio").text(artistBio);
+    $(".artist-bio").text(artistBio);
   }
 
   async function getPortfolio() {
